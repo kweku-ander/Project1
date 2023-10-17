@@ -1,11 +1,13 @@
 import express from "express";
 import sequelize from "./db/dbConfig.js";
-
+import likesRoute from "./routes/likesRoute.js"
 
 
 const app = express();
 
 const port = 5000;
+
+app.use("/likes", likesRoute);
 
 try {
     await sequelize.authenticate();
