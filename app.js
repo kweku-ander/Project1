@@ -1,27 +1,26 @@
 import express from "express";
-import sequelize from "./db/dbConfig.js";
+import sequelize from "./db/dbconfig.js";
 import bodyParser from "body-parser";
+import postRouter from "./route/postsRoute.js";
 import userRouter from "./routes/userRoute.js"
 
-
 const app = express();
+const port = 5000;
 app.use(bodyParser.json());
-const port = 5110;
-
+app.use("/post", postRouter)
 app.use("/user",userRouter);
 
-try {
-  await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-  console.log('kugzo you are doing good');
+try{
+    await sequelize.authenticate();
+    console.log('Connected succesfully');
+}catch (error){
+    console.log("unable to access database: ",error);
+};
 
-  app.listen(port,() =>{
-    console.log(`App is listening on port:${port}`);
-  });
+app.listen(port,()=>{
+    console.log(`App is listening on port ${port}`)
+});
 
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
 (async() => {
 await sequelize.sync();
 
