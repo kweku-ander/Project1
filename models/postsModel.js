@@ -1,10 +1,10 @@
 import sequelize from "../db/dbconfig.js";
-import { DataTypes } from "sequelize";
+import DataTypes  from "sequelize";
 
 const posts = sequelize.define("posts",{
     id:{
         type:DataTypes.UUID,
-        defaultValue: true,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey:true,
         allowNull: false
     },
@@ -26,11 +26,11 @@ const posts = sequelize.define("posts",{
 
     user_id:{
         type:DataTypes.UUID,
-        references:{
+        References:{
             model:"users",
             key: "id"
         }}
-})
+});
 
 (async()=>{
     await sequelize.sync()

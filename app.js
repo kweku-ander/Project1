@@ -1,8 +1,12 @@
-import express from "express"
-import sequelize from "./db/dbconfig.js"
+import express from "express";
+import sequelize from "./db/dbconfig.js";
+import postRouter from "./route/postsRoute.js";
+import bodyParser from "body-parser";
 
 const app = express();
 const port = 5000;
+app.use(bodyParser.json());
+app.use("/post", postRouter)
 
 try{
     await sequelize.authenticate();
