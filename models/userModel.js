@@ -1,21 +1,24 @@
 import sequelize from "../db/dbConfig.js";
 import DataTypes from "sequelize";
+// import post from "/postModel.js";
 
 const user = sequelize.define("users",{
  id:{
   type:DataTypes.UUID,
   defaultValue: DataTypes.UUIDV4,
-  primarykey:true,
+  primaryKey:true,
   allowNull:false,
  },
  username:{
   type: DataTypes.STRING,
-  allowNull:false
+  allowNull:false,
  },
  email:{
   type:DataTypes.STRING,
   allowNull:false,
-  isEmail:true
+  validate:{
+  isEmail:true,
+  }
  },
  password:{
   type:DataTypes.STRING,
@@ -27,5 +30,7 @@ const user = sequelize.define("users",{
 (async()=>{
   await sequelize.sync();
 });
+
+// user.hasMany(post,{foreignKey:"post_id"});
 
 export default user;
