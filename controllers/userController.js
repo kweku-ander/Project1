@@ -83,13 +83,10 @@ const registerUsers = async (req, res) =>{
         const deleted = await userModel.destroy({where:{id}});
           return res.status(200).json({message:"delete successully",deleted});
       
-        
-
       } catch(error){
         console.log(error)
         return res.status(500).json({message:"server error"});
 
-      }
-    };
+      }};
 
     export default {registerUsers, getUser,getAllUsers,updateUsers,deleteUsers};

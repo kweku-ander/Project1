@@ -21,10 +21,8 @@ const postLikes = sequelize.define("likes", {
             key: "id"
         }
     }
-});
-
-(async () => {
-    await sequelize.sync()
-})();
+},
+{paranoid: true}
+);
 
 export default postLikes;

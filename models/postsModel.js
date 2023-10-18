@@ -1,5 +1,6 @@
 import sequelize from "../db/dbconfig.js";
 import DataTypes  from "sequelize";
+import like from "./likesModel.js"
 
 const posts = sequelize.define("posts",{
     id:{
@@ -30,10 +31,12 @@ const posts = sequelize.define("posts",{
             model:"users",
             key: "id"
         }}
-});
+},{ paranoid: true}
+);
 
-(async()=>{
-    await sequelize.sync()
-})();
+posts.hasMany(like,{foreignKey: "post_id"});
+like.belongsTo(posts, {foreignKey: user_id});
+
+// posts.belongsToUser(user,{foreignKey: "user_id"});
 
 export default posts;

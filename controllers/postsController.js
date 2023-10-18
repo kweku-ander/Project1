@@ -13,7 +13,6 @@ return res.status(201).json({"message": "post uploaded", createdPost})
 }};
 
 
-
 //  get post by id
  const getPost = async (req, res) => {
 try {

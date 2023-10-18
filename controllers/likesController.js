@@ -11,8 +11,7 @@ const getPostLike = async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({ message: "failed", error })
-    }
-}
+    }};
 
 
 // Getting All Likes
@@ -37,10 +36,5 @@ const deleteLike = async (req, res) => {
         return res.status(500).json({ massage: "Error Unliking", error })
     }
 };
-
-
-
-
-
 
 export default { getPostLike, getAllLikes, deleteLike };
